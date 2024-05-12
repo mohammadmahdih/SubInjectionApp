@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SubInjection</string>
+    <string name="sign">Sign</string>
+    <string name="sub">Sub</string>
+    <string name="login">Login</string>
+    <string name="edit_sub">EditSub</string>
+    <string name="add_sub">AddSub</string>
+    <string name="del_sub">DeleteSub</string>
+</resources>
