@@ -31,7 +31,7 @@ class AddDialog(context:Context, val localUrl:String, val main: Main):AlertDialo
             this.sign = it
         }
         val crypto = Crypto()
-        binding.sub.setText(localUrl)
+        binding.sub.setText(crypto.dec(localUrl))
         binding.addBtn.setOnClickListener {
             val configApi = "$baseUrl/editor/insert"
             val params = JSONObject()

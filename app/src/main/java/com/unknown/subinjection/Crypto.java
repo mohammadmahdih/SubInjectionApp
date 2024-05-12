@@ -28,13 +28,14 @@ public class Crypto {
     }
 
     public String dec(String data) throws Exception {
-        String deocdedData = Arrays.toString(Base64.decode(data,Base64.DEFAULT));
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        Key key = new SecretKeySpec(hexStringToByteArray(KEY), "AES");
+        SecretKeySpec keySpec = new SecretKeySpec(hexStringToByteArray(KEY), "AES");
         IvParameterSpec ivSpec = new IvParameterSpec(hexStringToByteArray(IV));
-        cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
-        byte[] decryptedData = cipher.doFinal(data.getBytes());
-        return new String(decryptedData);
+        cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
+        byte[] decodedData = Base64.decode(data, Base64.DEFAULT);
+        byte[] decrypted = cipher.doFinal(decodedData);
+
+        return new String(decrypted);
     }
 
     private static byte[] hexStringToByteArray(String s) {

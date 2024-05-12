@@ -28,14 +28,16 @@ class SubAdapter(val data: JSONArray, val main: Main) :
     override fun getItemCount(): Int = data.length()
 
     override fun onBindViewHolder(holder: SubAdapterHolder, position: Int) {
-        holder.subText.text = data.getString(position)
+        val crypto = Crypto()
+        val sub = crypto.dec(data.getString(position))
+        holder.subText.text = sub
 
         holder.editBtn.setOnClickListener {
-            EditDialog(holder.itemView.context, data.getString(position), main).show()
+            EditDialog(holder.itemView.context, sub, main).show()
         }
 
         holder.card.setOnLongClickListener {
-            DeleteDialog(holder.itemView.context, data.getString(position), main).show()
+            DeleteDialog(holder.itemView.context, sub, main).show()
             return@setOnLongClickListener true
         }
 
